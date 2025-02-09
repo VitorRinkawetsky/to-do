@@ -9,6 +9,6 @@ namespace to_do.Classes
             
         }
 
-        public DbSet<Usuario> usuarios { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

@@ -1,66 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using to_do.Classes;
 
 namespace to_do.Controllers
 {
-    public class UsuarioController : Controller
+    [ApiController]
+    [Route("usuario")]
+    public class UsuarioController : ControllerBase
     {
-
-        // POST: UsuarioController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        private Context context;
+        public UsuarioController(Context context)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            this.context = context;
         }
 
-        // GET: UsuarioController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet(Name = "getUsuarios")]
+        public async Task<List<Usuario>> Get()
         {
-            return View();
+            return await context.Usuarios.ToListAsync();
         }
 
-        // POST: UsuarioController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UsuarioController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuarioController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
